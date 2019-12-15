@@ -1,7 +1,7 @@
 package POJO;
 
 
-public class Person {
+public class usr {
 
   private long id;
   private String name;

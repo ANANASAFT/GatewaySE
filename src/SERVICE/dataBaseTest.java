@@ -19,9 +19,9 @@ public class dataBaseTest extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         try {
-            String name = new dbOps().getNameByID(1);
+            String name = dbOps.getNameByID(1);
             response.getWriter().println(name);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
