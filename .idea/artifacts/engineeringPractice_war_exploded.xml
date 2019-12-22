@@ -15,6 +15,7 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.0" />
           <element id="library" level="project" name="Java EE 6-Java EE 6" />
+          <element id="library" level="project" name="Hibernate 5.4.9-5.4.9" />
         </element>
       </element>
     </root>
