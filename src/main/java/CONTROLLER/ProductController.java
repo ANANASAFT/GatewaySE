@@ -24,7 +24,6 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping("/product/{brand}")
     public List<Product> getProductsByBrand(@PathVariable("brand") String brand){
-
         return productService.getProductsByBrand(brand);
     }
     @CrossOrigin
