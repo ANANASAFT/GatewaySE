@@ -6,12 +6,15 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://114.116.196.70:3306/gatewaySE</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="connection.username"></property>
+    <property name="connection.password"></property>
     <mapping class="POJO.Product"/>
     <mapping class="POJO.Usr"/>
     <mapping class="POJO.Gateway"/>
     <mapping class="POJO.Sensor"/>
 
-
+<!--    <property name="connection.username"></property>-->
+<!--    <property name="connection.password"></property>-->
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>
