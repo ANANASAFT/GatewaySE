@@ -36,7 +36,10 @@ public class ProductController {
     @ResponseBody
     public Boolean test(@RequestBody GatewayParameters GP){
         if(GP != null) {
+            System.out.println(GP.getIndustrial_grade());
             System.out.println(GP.getCurrent());
+            System.out.println(GP.getTemperatureLow());
+            System.out.println(GP.getTemperatureHigh());
             return true;
         }
         return false;
