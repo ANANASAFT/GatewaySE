@@ -37,7 +37,6 @@ public class ProductController {
     public Boolean test(@RequestBody GatewayParameters GP){
         if(GP != null) {
             System.out.println(GP.getCurrent());
-            System.out.println(GP.getVoltage());
             return true;
         }
         return false;
