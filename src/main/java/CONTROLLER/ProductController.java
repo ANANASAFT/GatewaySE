@@ -1,14 +1,13 @@
 package CONTROLLER;
 
 import POJO.Product;
+import POJO.GatewayParameters;
 import SERVICE.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Toon
@@ -30,5 +29,17 @@ public class ProductController {
     @RequestMapping("/product/all")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean test(@RequestBody GatewayParameters GP){
+        if(GP != null) {
+            System.out.println(GP.getCurrent());
+            System.out.println(GP.getVoltage());
+            return true;
+        }
+        return false;
     }
 }
