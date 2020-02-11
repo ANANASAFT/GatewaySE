@@ -1,7 +1,8 @@
 package CONTROLLER;
 
+import POJO.GatewayWorkingEnv;
 import POJO.Product;
-import POJO.GatewayParameters;
+import POJO.GatewayWorkingEnv;
 import SERVICE.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,12 +35,11 @@ public class ProductController {
     @CrossOrigin
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     @ResponseBody
-    public Boolean test(@RequestBody GatewayParameters GP){
-        if(GP != null) {
-            System.out.println(GP.getIndustrial_grade());
-            System.out.println(GP.getCurrent());
-            System.out.println(GP.getTemperatureLow());
-            System.out.println(GP.getTemperatureHigh());
+    public Boolean test(@RequestBody Map M){
+        if(M != null) {
+            Map sensorParameters = (Map) M.get("sensorParameters");
+            Map sensorWorkingEnv = (Map) M.get("sensorWorkingEnv");
+            Map gatewayWorkingEnv = (Map) M.get("gatewayWorkingEnv");
             return true;
         }
         return false;
