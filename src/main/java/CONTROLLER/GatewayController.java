@@ -34,7 +34,17 @@ public class GatewayController {
         return gatewayService.getNeededGatewayByBrandPaged(brand,page,10);
     }
 
+    //查询所有的网关信息并分页返回
+    @RequestMapping(value="/gateway/insert",method= RequestMethod.POST)
+    @ResponseBody
+    public boolean insert(@RequestBody Gateway gateway){
+        return gatewayService.insert(gateway);
+    }
 
+    @RequestMapping(value="/gateway/all/{page}")
+    public List<Gateway> queryAllPaged(@PathVariable("page") int page){
+        return gatewayService.queryAllGatewayPaged(page,10);
+    }
 
     //用于查询所需的网关信息,分页
     @RequestMapping(value="/gateway/neededPage",method= RequestMethod.POST)

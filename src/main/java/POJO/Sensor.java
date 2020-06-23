@@ -67,7 +67,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "voltage_high")
+    @Column(name = "voltageHigh")
     public Double getVoltageHigh() {
         return voltageHigh;
     }
@@ -77,7 +77,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "voltage_low")
+    @Column(name = "voltageLow")
     public Double getVoltageLow() {
         return voltageLow;
     }
@@ -97,7 +97,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "temperature_high")
+    @Column(name = "temperatureHigh")
     public Integer getTemperatureHigh() {
         return temperatureHigh;
     }
@@ -107,7 +107,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "temperature_low")
+    @Column(name = "temperatureLow")
     public Integer getTemperatureLow() {
         return temperatureLow;
     }
@@ -117,7 +117,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "frequency_high")
+    @Column(name = "frequencyHigh")
     public Integer getFrequencyHigh() {
         return frequencyHigh;
     }
@@ -127,7 +127,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "frequency_low")
+    @Column(name = "frequencyLow")
     public Integer getFrequencyLow() {
         return frequencyLow;
     }
@@ -137,7 +137,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "output_interface")
+    @Column(name = "outputInterface")
     public Integer getOutputInterface() {
         return outputInterface;
     }
@@ -147,7 +147,7 @@ public class Sensor {
     }
 
     @Basic
-    @Column(name = "industrial_grade")
+    @Column(name = "industrialGrade")
     public Integer getIndustrialGrade() {
         return industrialGrade;
     }
