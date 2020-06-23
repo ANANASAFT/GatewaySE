@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:mysql://114.116.196.70:3306/gatewaySE</property>
+    <property name="connection.url">jdbc:mysql://114.116.206.27:3306/gatewaySE</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="connection.username">root</property>
     <property name="connection.password">Gg666888</property>

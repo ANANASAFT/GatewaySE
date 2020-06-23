@@ -1,9 +1,8 @@
 package POJO;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * @author: Toon
@@ -22,6 +21,8 @@ public class Gateway {
     private String description;
 
     @Id
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator") // 自增长
     @Column(name = "id")
     public int getId() {
         return id;
@@ -52,7 +53,7 @@ public class Gateway {
     }
 
     @Basic
-    @Column(name = "temperature_high")
+    @Column(name = "temperatureHigh")
     public Double getTemperatureHigh() {
         return temperatureHigh;
     }
@@ -62,7 +63,7 @@ public class Gateway {
     }
 
     @Basic
-    @Column(name = "temperature_low")
+    @Column(name = "temperatureLow")
     public Double getTemperatureLow() {
         return temperatureLow;
     }
@@ -82,7 +83,7 @@ public class Gateway {
     }
 
     @Basic
-    @Column(name = "industrial_grade")
+    @Column(name = "industrialGrade")
     public Integer getIndustrialGrade() {
         return industrialGrade;
     }
@@ -92,7 +93,7 @@ public class Gateway {
     }
 
     @Basic
-    @Column(name = "intel_device_interface")
+    @Column(name = "intelDeviceInterface")
     public Integer getIntelDeviceInterface() {
         return intelDeviceInterface;
     }
@@ -147,5 +148,20 @@ public class Gateway {
         result = 31 * result + (intelDeviceInterface != null ? intelDeviceInterface.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Gateway{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", brand='" + brand + '\'' +
+                ", temperatureHigh=" + temperatureHigh +
+                ", temperatureLow=" + temperatureLow +
+                ", current=" + current +
+                ", industrialGrade=" + industrialGrade +
+                ", intelDeviceInterface=" + intelDeviceInterface +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
