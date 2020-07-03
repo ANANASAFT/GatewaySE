@@ -13,6 +13,28 @@ import javax.persistence.Id;
 public class Usr {
     private int id;
     private String name;
+    private String password;
+    private String e_mail;
+
+    @Basic
+    @Column(name="password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Basic
+    @Column(name ="email")
+    public String getE_mail() {
+        return e_mail;
+    }
+
+    public void setE_mail(String e_mail) {
+        this.e_mail = e_mail;
+    }
 
     @Id
     @Column(name = "id")

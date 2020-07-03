@@ -23,7 +23,7 @@ public class SensorDao {
     *@Time 20:14
     */
     private static String generateSQLExcution(Map M){
-        StringBuilder  s=new StringBuilder(" from gateway where 1=1");
+        StringBuilder  s=new StringBuilder(" from sensor where 1=1");
         if(M.get("industrialGrade")!=null ){
             int industrialGrade=(Integer)M.get("industrialGrade");
             if(industrialGrade>=0&&industrialGrade<3)
@@ -59,6 +59,68 @@ public class SensorDao {
         return string;
     }
 
+    private static String generateSQLExcution(Map parameters,Map M){
+        StringBuilder  s=new StringBuilder(" from sensor s，sensor0 s0 where 1=1");
+        if(M.get("industrialGrade")!=null ){
+            int industrialGrade=(Integer)M.get("industrialGrade");
+            if(industrialGrade>=0&&industrialGrade<3)
+                s.append(" and s.industrialGrade = "+industrialGrade);
+        }
+        if(M.get("temperatureLow")!=null){
+            s.append(" and s.temperatureLow > "+M.get("temperatureLow"));
+        }
+        if(M.get("temperatureHigh")!=null ){
+            s.append(" and s.temperatureHigh < "+M.get("temperatureHigh"));
+        }
+        if(M.get("currentLow")!=null){
+            s.append(" and s.current > "+M.get("currentLow"));
+        }
+        if (M.get("currentHigh")!=null) {
+            s.append(" and s.current < "+M.get("currentHigh"));
+        }
+        if(M.get("frequencyHigh")!=null){
+            s.append(" and s.frequencyHigh < "+M.get("frequencyHigh"));
+        }
+        if(M.get("frequencyLow")!=null){
+            s.append(" and s.frequencyLow > "+M.get("frequencyLow"));
+        }
+        if(M.get("voltageHigh")!=null){
+            s.append(" and s.voltageHigh < "+M.get("voltageHigh"));
+        }
+        if(M.get("voltageLow")!=null){
+            s.append(" and s.voltageLow > "+M.get("voltageLow"));
+        }
+        if(parameters.get("transmittingPorts")!=null){
+            s.append(" and s0.transmittingPorts = "+parameters.get("transmittingPorts"));
+        }
+        if(parameters.get("receivingPorts")!=null){
+            s.append(" and s0.receivingPorts = "+parameters.get("receivingPorts"));
+        }
+        if(parameters.get("frequencyLow")!=null){
+            s.append(" and s0.frequencyLow < "+parameters.get("frequencyLow"));
+        }
+        if(parameters.get("frequencyHign")!=null){
+            s.append(" and s0.frequencyHign > "+parameters.get("frequencyHign"));
+        }
+        if(parameters.get("powerLow")!=null){
+            s.append(" and s0.powerLow < "+parameters.get("powerLow"));
+        }
+        if(parameters.get("powerHigh")!=null){
+            s.append(" and s0.powerHigh > "+parameters.get("powerHigh"));
+        }
+        if(parameters.get("noiseLow")!=null){
+            s.append(" and s0.noiseLow < "+parameters.get("noiseLow"));
+        }
+        if(parameters.get("noiseHigh")!=null){
+            s.append(" and s0.noiseHigh > "+parameters.get("noiseHigh"));
+        }
+
+
+
+        String string=s.toString();
+        return string;
+    }
+
     public static List<Sensor>  getNeededSensor(Map M){
         List<Sensor >sensors;
         try{
@@ -68,6 +130,32 @@ public class SensorDao {
             System.out.println(hql);
             Query query = session.createQuery(hql);
 
+            System.out.println("executing: " + query.getQueryString());
+            sensors=query.list();
+        }finally{
+            //session.close();
+        }return sensors;
+    }
+
+    /**
+     *@Description getNeededSensor的分页形式
+     *@Param [M, page, size]
+     *@Return java.util.List<POJO.Sensor>
+     *@Author Mr.Sun
+     *@Date 2020/6/23
+     *@Time 20:04
+     */
+    public static List<Sensor>  getNeededSensor(Map M,int page,int size){
+        List<Sensor>sensors;
+        try{
+            System.out.println("querying all sensors ");
+
+            String hql=generateSQLExcution(M);
+            System.out.println(hql);
+            Query query = session.createQuery(hql);
+            int begin=computeFirstResult(page,size);
+            query.setFirstResult(begin);
+            query.setMaxResults(size);
             System.out.println("executing: " + query.getQueryString());
             sensors=query.list();
         }finally{
@@ -127,32 +215,6 @@ public class SensorDao {
         sensors=query.list();
         System.out.println(sensors);
         return sensors;
-    }
-
-    /**
-    *@Description getNeededSensor的分页形式
-    *@Param [M, page, size]
-    *@Return java.util.List<POJO.Sensor>
-    *@Author Mr.Sun
-    *@Date 2020/6/23
-    *@Time 20:04
-    */
-    public static List<Sensor>  getNeededSensor(Map M,int page,int size){
-        List<Sensor>sensors;
-        try{
-            System.out.println("querying all sensors ");
-
-            String hql=generateSQLExcution(M);
-            System.out.println(hql);
-            Query query = session.createQuery(hql);
-            int begin=computeFirstResult(page,size);
-            query.setFirstResult(begin);
-            query.setMaxResults(size);
-            System.out.println("executing: " + query.getQueryString());
-            sensors=query.list();
-        }finally{
-            //session.close();
-        }return sensors;
     }
 
     /**
